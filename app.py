@@ -11,7 +11,7 @@ def chatgpt():
     data = ''
     if question:
         def stream():
-            openai.api_key = "YOUR API-KEY"
+            openai.api_key = "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"
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
@@ -32,6 +32,6 @@ def chatgpt():
                     data = trunk['choices'][0]['delta'].get('content','')
                 yield "data: %s\n\n" % data.replace("\n","<br>")
         return flask.Response(stream(),mimetype="text/event-stream")
-    return render_template('chatpgt-clone.html')
+    return render_template('chatpgt.html')
 
 app.run(host="0.0.0.0", port=5000, debug=True)
